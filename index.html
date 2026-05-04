@@ -3,22 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <title>Abdulrahim Albijadi | Personal Portfolio</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <script defer src="js/script.js?v=5"></script>
+    <script defer src="js/script.js?v=7"></script>
   </head>
+
   <body>
     <main id="container">
-      <header class="hero">
+      <header class="hero" id="home">
         <div class="hero-text">
           <h1>Abdulrahim Albijadi</h1>
-          <p class="subtitle">Software Engineering Student | KFUPM | 202260760</p>
+          <p class="subtitle">
+            Software Engineering Student | Full-Stack Development | Databases | Machine Learning
+          </p>
         </div>
+
         <button id="themeToggle" type="button">Dark mode</button>
       </header>
 
       <nav class="navbar">
-        <a href="#welcome">Welcome</a>
+        <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
@@ -26,54 +30,50 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <section id="welcome">
-        <h2>Welcome</h2>
-        <p class="section-note">You can save your name and the website will remember it.</p>
-
-        <div class="welcome-row">
-          <input
-            type="text"
-            id="visitorNameInput"
-            name="visitorNameInput202260760"
-            placeholder="Enter your name"
-            autocomplete="new-password"
-            value=""
-          />
-          <button id="saveNameBtn" type="button">Save</button>
-        </div>
-
-        <p id="welcomeMessage">Welcome, guest!</p>
-      </section>
-
       <section id="about">
         <h2>About Me</h2>
-        <p>I am Abdulrahim Albijadi, a Software Engineering student at KFUPM.</p>
-        <p>I am currently in my junior year and studying SWE363.</p>
-        <p>I am interested in web development, software engineering, databases, and machine learning.</p>
+        <p>
+          I am a Software Engineering student at King Fahd University of Petroleum & Minerals
+          (KFUPM), with experience in full-stack web development, databases, and machine learning.
+        </p>
+        <p>
+          I enjoy building practical software systems that combine clean user interfaces,
+          backend APIs, and database-driven functionality.
+        </p>
       </section>
 
       <section id="skills">
         <h2>Skills</h2>
-        <p class="section-note">Some of the technical skills I have learned and practiced.</p>
+        <p class="section-note">
+          Technical skills I have learned and applied through coursework and projects.
+        </p>
 
         <div class="skills-grid">
+          <span>Python</span>
+          <span>Java</span>
+          <span>JavaScript</span>
+          <span>C</span>
+          <span>SQL</span>
           <span>HTML</span>
           <span>CSS</span>
-          <span>JavaScript</span>
           <span>React</span>
           <span>Node.js</span>
           <span>Express</span>
-          <span>SQL</span>
+          <span>RESTful APIs</span>
+          <span>API Integration</span>
+          <span>MySQL</span>
           <span>MongoDB</span>
-          <span>Python</span>
-          <span>Java</span>
+          <span>MongoDB Atlas</span>
+          <span>Git</span>
+          <span>GitHub</span>
+          <span>Vercel</span>
         </div>
       </section>
 
       <section id="projects">
         <h2>Projects</h2>
         <p class="section-note">
-          Use the filter, sort, and search options to explore my projects.
+          Use the filter, sort, and search options to explore selected projects.
         </p>
 
         <div class="project-controls">
@@ -82,6 +82,7 @@
             <select id="filterProjects">
               <option value="all">All</option>
               <option value="web">Web</option>
+              <option value="database">Database</option>
               <option value="ml">Machine Learning</option>
             </select>
           </div>
@@ -107,19 +108,49 @@
           <article
             class="project-card"
             data-category="web"
+            data-title="KFUPM Events Management System"
+          >
+            <div class="project-content">
+              <h3>KFUPM Events Management System</h3>
+              <span class="project-tag">Full-Stack Web Application</span>
+              <p>
+                A full-stack event management platform supporting event creation,
+                submission, tracking, and admin approval workflows.
+              </p>
+              <p>
+                Built role-based organizer and admin functionality using React,
+                Node.js/Express, and MongoDB.
+              </p>
+            </div>
+
+            <img
+              src="assets/images/KFUPMEvents-Main.png"
+              alt="KFUPM Events Management System screenshot"
+              loading="lazy"
+            />
+          </article>
+
+          <article
+            class="project-card"
+            data-category="database"
             data-title="Bookstore Management System"
           >
             <div class="project-content">
               <h3>Bookstore Management System</h3>
-              <span class="project-tag">Web</span>
+              <span class="project-tag">Database-Driven Web Application</span>
               <p>
-                Database-driven web application used to manage bookstore inventory
-                with database and backend functionality.
+                Designed and implemented a normalized relational database schema
+                for a bookstore system.
+              </p>
+              <p>
+                Built a backend system using Python Flask and MySQL, with RESTful APIs
+                for authentication, book search, and order management.
               </p>
             </div>
+
             <img
               src="assets/images/BookstoreMySQL.png"
-              alt="MySQL database screenshot"
+              alt="Bookstore Management System database screenshot"
               loading="lazy"
             />
           </article>
@@ -131,36 +162,20 @@
           >
             <div class="project-content">
               <h3>Job Application Outcome Prediction System</h3>
-              <span class="project-tag">Machine Learning</span>
+              <span class="project-tag">Machine Learning Classification</span>
               <p>
-                Machine learning classification project using models such as KNN,
-                SVM, and DNN to predict job application outcomes.
+                Developed and compared machine learning models including KNN, SVM,
+                Logistic Regression, and DNN to predict job application outcomes.
+              </p>
+              <p>
+                Performed data preprocessing, feature engineering, and model evaluation
+                using metrics such as accuracy and precision.
               </p>
             </div>
+
             <img
               src="assets/images/JupyterNB-PythonSVM.jpeg"
-              alt="Python SVM code screenshot"
-              loading="lazy"
-            />
-          </article>
-
-          <article
-            class="project-card"
-            data-category="web"
-            data-title="KFUPM Events Platform"
-          >
-            <div class="project-content">
-              <h3>KFUPM Events Platform</h3>
-              <span class="project-tag">Web</span>
-              <p>
-                SWE363 web project for managing university events, browsing event
-                details, and improving the event booking experience through a cleaner
-                and more interactive interface.
-              </p>
-            </div>
-            <img
-              src="assets/images/KFUPMEvents-Main.png"
-              alt="KFUPM Events platform homepage screenshot"
+              alt="Job Application Outcome Prediction System screenshot"
               loading="lazy"
             />
           </article>
@@ -171,7 +186,9 @@
         <div class="section-top">
           <div>
             <h2>GitHub Repositories</h2>
-            <p class="section-note">These repositories are loaded automatically from the GitHub API.</p>
+            <p class="section-note">
+              Repositories loaded automatically from my GitHub profile using the GitHub API.
+            </p>
           </div>
         </div>
 
@@ -181,7 +198,7 @@
 
       <section id="contact">
         <h2>Contact</h2>
-        <p class="section-note">Fill in the form below to send a message.</p>
+        <p class="section-note">Use the form below to send a message.</p>
 
         <form id="contactForm">
           <div>
@@ -217,13 +234,13 @@
             ></textarea>
           </div>
 
-          <button type="submit">Confirm</button>
+          <button type="submit">Send Message</button>
         </form>
 
         <p id="formMessage"></p>
       </section>
     </main>
 
-    <button id="scrollTopBtn" type="button">↑</button>
+    <button id="scrollTopBtn" type="button" aria-label="Scroll to top">↑</button>
   </body>
 </html>

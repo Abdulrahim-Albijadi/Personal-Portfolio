@@ -1,56 +1,3 @@
-// Save visitor name
-const visitorName = document.getElementById("visitorNameInput");
-const saveNameBtn = document.getElementById("saveNameBtn");
-const welcomeMessage = document.getElementById("welcomeMessage");
-
-const savedName = localStorage.getItem("visitorName");
-
-if (savedName) {
-  welcomeMessage.textContent = `Welcome, ${savedName}!`;
-} else {
-  welcomeMessage.textContent = "Welcome, guest!";
-}
-
-// Keep the input field empty when the page opens
-visitorName.value = "";
-visitorName.setAttribute("value", "");
-
-window.addEventListener("pageshow", () => {
-  visitorName.value = "";
-  visitorName.setAttribute("value", "");
-});
-
-function saveVisitorName() {
-  const nameValue = visitorName.value.trim();
-
-  if (nameValue === "") {
-    welcomeMessage.textContent = "Please enter your name.";
-    welcomeMessage.style.color = "red";
-
-    visitorName.value = "";
-    visitorName.setAttribute("value", "");
-    return;
-  }
-
-  localStorage.setItem("visitorName", nameValue);
-  welcomeMessage.textContent = `Welcome, ${nameValue}!`;
-  welcomeMessage.style.color = "inherit";
-
-  // Clear the field after saving
-  visitorName.value = "";
-  visitorName.setAttribute("value", "");
-  visitorName.blur();
-}
-
-saveNameBtn.addEventListener("click", saveVisitorName);
-
-visitorName.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    saveVisitorName();
-  }
-});
-
 // Load saved theme
 const toggleBtn = document.getElementById("themeToggle");
 
@@ -183,9 +130,15 @@ async function loadRepositories() {
 
     let repos = await response.json();
 
-    repos = repos.filter(
-      (repo) => repo.name !== "202260760-Abdulrahim-assignment2"
-    );
+    repos = repos.filter((repo) => {
+      const hiddenRepos = [
+        "202260760-Abdulrahim-assignment2",
+        "202260760-Abdulrahim-assignment3",
+        "202260760-Abdulrahim-assignment4",
+      ];
+
+      return !hiddenRepos.includes(repo.name);
+    });
 
     repos.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -226,7 +179,7 @@ const scrollBtn = document.getElementById("scrollTopBtn");
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
-    scrollBtn.style.display = "block";
+    scrollBtn.style.display = "flex";
   } else {
     scrollBtn.style.display = "none";
   }
