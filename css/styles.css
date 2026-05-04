@@ -345,6 +345,32 @@ select {
   transform: translateY(-2px);
 }
 
+.cv-button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #1f2937;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.cv-button:hover {
+  background: #374151;
+  transform: translateY(-1px);
+}
+
+.dark .cv-button {
+  background: #ffffff;
+  color: #111827;
+}
+
+.dark .cv-button:hover {
+  background: #e5e7eb;
+}
+
 /* Dark mode */
 .dark {
   background: #111827;
