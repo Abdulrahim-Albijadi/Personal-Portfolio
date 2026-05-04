@@ -1,29 +1,50 @@
+const sunIcon = `
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+    <path
+      d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      fill="none"
+    ></path>
+  </svg>
+`;
+
+const moonIcon = `
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M21 14.5A8.5 8.5 0 0 1 9.5 3A8.5 8.5 0 1 0 21 14.5Z"
+      fill="currentColor"
+    ></path>
+  </svg>
+`;
+
 // Theme toggle: dark mode by default
 const toggleBtn = document.getElementById("themeToggle");
-
 const savedTheme = localStorage.getItem("theme");
 
-if (savedTheme === "light") {
-  document.body.classList.remove("dark");
-  toggleBtn.textContent = "🌙";
-  toggleBtn.setAttribute("aria-label", "Switch to dark mode");
-} else {
-  document.body.classList.add("dark");
-  toggleBtn.textContent = "☀️";
-  toggleBtn.setAttribute("aria-label", "Switch to light mode");
+function setTheme(theme) {
+  if (theme === "light") {
+    document.body.classList.remove("dark");
+    toggleBtn.innerHTML = moonIcon;
+    toggleBtn.setAttribute("aria-label", "Switch to dark mode");
+    localStorage.setItem("theme", "light");
+  } else {
+    document.body.classList.add("dark");
+    toggleBtn.innerHTML = sunIcon;
+    toggleBtn.setAttribute("aria-label", "Switch to light mode");
+    localStorage.setItem("theme", "dark");
+  }
 }
 
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+setTheme(savedTheme === "light" ? "light" : "dark");
 
+toggleBtn.addEventListener("click", () => {
   if (document.body.classList.contains("dark")) {
-    localStorage.setItem("theme", "dark");
-    toggleBtn.textContent = "☀️";
-    toggleBtn.setAttribute("aria-label", "Switch to light mode");
+    setTheme("light");
   } else {
-    localStorage.setItem("theme", "light");
-    toggleBtn.textContent = "🌙";
-    toggleBtn.setAttribute("aria-label", "Switch to dark mode");
+    setTheme("dark");
   }
 });
 
@@ -48,11 +69,8 @@ function updateProjects() {
     const text = project.textContent.toLowerCase();
     const category = project.dataset.category;
 
-    const matchesSearch =
-      title.includes(searchValue) || text.includes(searchValue);
-
-    const matchesCategory =
-      selectedCategory === "all" || category === selectedCategory;
+    const matchesSearch = title.includes(searchValue) || text.includes(searchValue);
+    const matchesCategory = selectedCategory === "all" || category === selectedCategory;
 
     return matchesSearch && matchesCategory;
   });
@@ -176,8 +194,7 @@ async function loadRepositories() {
       repoList.appendChild(repoCard);
     });
   } catch (error) {
-    repoStatus.textContent =
-      "Could not load GitHub repositories. Please try again later.";
+    repoStatus.textContent = "Could not load GitHub repositories. Please try again later.";
     repoStatus.style.color = "red";
   }
 }

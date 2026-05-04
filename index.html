@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Abdulrahim Albijadi | Personal Portfolio</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <script defer src="js/script.js?v=8"></script>
+    <script defer src="js/script.js?v=9"></script>
   </head>
 
   <body class="dark">
+    <button id="themeToggle" type="button" aria-label="Switch to light mode"></button>
+
     <main id="container">
       <header class="hero" id="home">
         <div class="hero-text">
@@ -17,8 +19,6 @@
             Software Engineering Student | Full-Stack Development | Databases | Machine Learning
           </p>
         </div>
-
-        <button id="themeToggle" type="button" aria-label="Switch to light mode">☀️</button>
       </header>
 
       <nav class="navbar">
@@ -105,11 +105,7 @@
         <p id="emptyMessage" style="display: none;">No projects found.</p>
 
         <div id="projectList" class="project-grid">
-          <article
-            class="project-card"
-            data-category="web"
-            data-title="KFUPM Events Management System"
-          >
+          <article class="project-card" data-category="web" data-title="KFUPM Events Management System">
             <div class="project-content">
               <h3>KFUPM Events Management System</h3>
               <span class="project-tag">Full-Stack Web Application</span>
@@ -130,11 +126,7 @@
             />
           </article>
 
-          <article
-            class="project-card"
-            data-category="database"
-            data-title="Bookstore Management System"
-          >
+          <article class="project-card" data-category="database" data-title="Bookstore Management System">
             <div class="project-content">
               <h3>Bookstore Management System</h3>
               <span class="project-tag">Database-Driven Web Application</span>
@@ -155,11 +147,7 @@
             />
           </article>
 
-          <article
-            class="project-card"
-            data-category="ml"
-            data-title="Job Application Outcome Prediction System"
-          >
+          <article class="project-card" data-category="ml" data-title="Job Application Outcome Prediction System">
             <div class="project-content">
               <h3>Job Application Outcome Prediction System</h3>
               <span class="project-tag">Machine Learning Classification</span>
@@ -203,24 +191,12 @@
         <form id="contactForm">
           <div>
             <label for="myName">Name</label>
-            <input
-              type="text"
-              name="myName"
-              id="myName"
-              placeholder="Your name"
-              required
-            />
+            <input type="text" name="myName" id="myName" placeholder="Your name" required />
           </div>
 
           <div>
             <label for="myEmail">Email</label>
-            <input
-              type="email"
-              name="myEmail"
-              id="myEmail"
-              placeholder="you@example.com"
-              required
-            />
+            <input type="email" name="myEmail" id="myEmail" placeholder="you@example.com" required />
           </div>
 
           <div>
