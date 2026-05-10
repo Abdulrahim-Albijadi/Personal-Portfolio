@@ -4,7 +4,7 @@ A personal portfolio website presenting my software engineering projects, techni
 
 ## Live Website
 
-🔗 [View Portfolio](https://b9-2.github.io/Personal-Portfolio/)
+🔗 [View Portfolio](https://meinfolio.vercel.app)
 
 ## About
 
