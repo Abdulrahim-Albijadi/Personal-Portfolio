@@ -1,4 +1,4 @@
-# Abdulrahim Albijadi — Personal Portfolio (Initial Layout)
+# Abdulrahim Albijadi — Personal Portfolio
 
 A personal portfolio website presenting my software engineering projects, technical skills, and development experience. The site is designed to give a clear overview of my work in full-stack web development, databases, and machine learning.
 
