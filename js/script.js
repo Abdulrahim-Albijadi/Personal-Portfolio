@@ -120,6 +120,24 @@ async function loadRepositories() {
   }
 }
 loadRepositories();
+const contactForm = document.getElementById('contactForm');
+const formMessage = document.getElementById('formMessage');
+if (contactForm) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('myName').value.trim();
+    const email = document.getElementById('myEmail').value.trim();
+    const message = document.getElementById('myMessage').value.trim();
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    );
+
+    window.location.href = `mailto:abdulraheem6421@gmail.com?subject=${subject}&body=${body}`;
+    formMessage.textContent = 'Opening your email app with the message ready to send.';
+  });
+}
 const scrollBtn = document.getElementById('scrollTopBtn');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
