@@ -29,6 +29,45 @@ toggleBtn.addEventListener('click', () => {
     setTheme('dark');
   }
 });
+function getLanguageIcon(language) {
+  const normalizedLanguage = (language || '').toLowerCase();
+
+  if (normalizedLanguage === 'javascript') {
+    return `
+      <svg class="language-icon lang-javascript" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+        <text x="12" y="16">JS</text>
+      </svg>
+    `;
+  }
+
+  if (normalizedLanguage === 'html') {
+    return `
+      <svg class="language-icon lang-html" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 3h14l-1.3 15.2L12 21l-5.7-2.8L5 3Z"></path>
+        <path d="M9 8h6l-.3 3H9.3l.3 3.4 2.4.9 2.4-.9.2-1.8"></path>
+      </svg>
+    `;
+  }
+
+  if (normalizedLanguage === 'python') {
+    return `
+      <svg class="language-icon lang-python" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 4h6a3 3 0 0 1 3 3v3H9a3 3 0 0 0-3 3v1H4V9a5 5 0 0 1 5-5Z"></path>
+        <path d="M16 20h-6a3 3 0 0 1-3-3v-3h8a3 3 0 0 0 3-3v-1h2v5a5 5 0 0 1-5 5Z"></path>
+        <circle cx="10" cy="7" r="0.9"></circle>
+        <circle cx="14" cy="17" r="0.9"></circle>
+      </svg>
+    `;
+  }
+
+  return `
+    <svg class="language-icon lang-code" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m10 8-4 4 4 4"></path>
+      <path d="m14 8 4 4-4 4"></path>
+    </svg>
+  `;
+}
 async function loadRepositories() {
   const repoStatus = document.getElementById('repoStatus');
   const repoList = document.getElementById('repoList');
@@ -57,8 +96,9 @@ async function loadRepositories() {
     });
     repoStatus.textContent = '';
     repos.slice(0, 6).forEach((repo) => {
+      const isFeatured = featuredRepoOrder.includes(repo.name);
       const repoCard = document.createElement('article');
-      repoCard.className = 'glass repo-card';
+      repoCard.className = `glass repo-card${isFeatured ? ' featured-repo' : ''}`;
       repoCard.innerHTML = `
         <div class="repo-top">
           <span class="repo-icon" aria-hidden="true">
@@ -66,10 +106,13 @@ async function loadRepositories() {
               <path d="M14 2 5 13h7l-2 9 9-12h-7l2-8Z"></path>
             </svg>
           </span>
-          <span>${repo.language || 'Code'}</span>
+          <span class="repo-language">
+            ${getLanguageIcon(repo.language)}
+            ${repo.language || 'Code'}
+          </span>
         </div>
         <h3>
-          <a href="${repo.html_url}" target="_blank">
+          <a href="${repo.html_url}" target="_blank" rel="noopener">
             ${repo.name}
           </a>
         </h3>
@@ -85,6 +128,7 @@ async function loadRepositories() {
           </span>
           <span>${repo.visibility}</span>
         </div>
+        <a class="repo-action" href="${repo.html_url}" target="_blank" rel="noopener">View repository</a>
       `;
       repoList.appendChild(repoCard);
     });

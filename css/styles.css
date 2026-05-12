@@ -300,13 +300,17 @@ textarea {
   display: grid;
   gap: 24px;
 }
+.repo-grid {
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  align-items: stretch;
+}
 .project-card {
-  padding: 28px;
+  padding: 26px;
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 24px;
+  grid-template-columns: minmax(0,1.25fr) minmax(280px,0.75fr);
+  gap: 22px;
   align-items: center;
   transition: 0.3s ease;
 }
@@ -348,11 +352,40 @@ textarea {
   filter: brightness(1);
   transform: scale(1.02);
 }
-.project-visual {
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.project-link,
+.repo-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(59,130,246,0.12);
+  color: var(--blue-light);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+.project-link:hover,
+.repo-action:hover {
+  border-color: rgba(96,165,250,0.5);
+  background: rgba(59,130,246,0.2);
+  transform: translateY(-2px);
+}
+.evidence-panel {
   position: relative;
   z-index: 2;
-  min-height: 260px;
-  border-radius: 18px;
+  min-height: 210px;
+  border-radius: 16px;
   border: 1px solid var(--border);
   overflow: hidden;
   background:
@@ -361,20 +394,19 @@ textarea {
     rgba(15,23,42,0.86);
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 30px;
+  padding: 24px;
   transition: transform 0.4s ease, border-color 0.4s ease;
 }
-.project-card:hover .project-visual {
+.project-card:hover .evidence-panel {
   border-color: rgba(96,165,250,0.45);
   transform: scale(1.02);
 }
-.unavailable-content {
-  max-width: 420px;
+.evidence-content {
+  max-width: 360px;
 }
-.unavailable-content span {
+.evidence-content span {
   display: inline-flex;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid rgba(148,163,184,0.22);
@@ -383,34 +415,101 @@ textarea {
   font-size: 13px;
   font-weight: 700;
 }
-.unavailable-content h4 {
+.evidence-content h4 {
   margin-bottom: 10px;
   color: white;
-  font-size: 22px;
+  font-size: 20px;
 }
-.unavailable-content p {
+.evidence-content ul {
+  display: grid;
+  gap: 9px;
+  padding-left: 18px;
+}
+.evidence-content li {
   color: var(--secondary);
-  line-height: 1.7;
+  line-height: 1.5;
   font-size: 15px;
 }
 .repo-card {
   padding: 28px;
   transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.repo-card.featured-repo {
+  border-color: rgba(96,165,250,0.38);
+  background:
+    linear-gradient(180deg, rgba(59,130,246,0.12), transparent 70%),
+    var(--surface);
+}
+.repo-card:not(.featured-repo) {
+  padding: 22px;
+  opacity: 0.88;
+  box-shadow: none;
+}
+.repo-card:not(.featured-repo) h3 {
+  font-size: 20px;
+}
+.repo-card h3 {
+  margin-top: 16px;
 }
 .repo-top,
 .repo-meta {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .repo-meta {
   margin-top: 16px;
   color: var(--secondary);
 }
+.repo-description {
+  flex: 1;
+}
 .repo-icon,
-.repo-stat {
+.repo-stat,
+.repo-language {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+.language-icon {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
+.language-icon.lang-javascript rect {
+  fill: #f1e05a;
+}
+.language-icon.lang-javascript text {
+  fill: #111827;
+  font-size: 8px;
+  font-weight: 800;
+  text-anchor: middle;
+  font-family: Inter, sans-serif;
+}
+.language-icon.lang-html {
+  fill: none;
+  stroke: #e34c26;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.language-icon.lang-python path:first-child {
+  fill: #3572a5;
+}
+.language-icon.lang-python path:nth-child(2) {
+  fill: #f1c40f;
+}
+.language-icon.lang-python circle {
+  fill: #0f172a;
+}
+.language-icon.lang-code {
+  fill: none;
+  stroke: var(--blue-light);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .repo-icon svg,
 .repo-stat svg {
@@ -425,6 +524,9 @@ textarea {
 .repo-card a {
   color: var(--blue-light);
   text-decoration: none;
+}
+.repo-action {
+  margin-top: 24px;
 }
 .contact-card {
   padding: 32px;
@@ -506,6 +608,9 @@ footer {
   .project-card {
     grid-template-columns: 1fr;
   }
+  .repo-grid {
+    grid-template-columns: 1fr;
+  }
   section {
     padding: 90px 0;
   }
@@ -518,7 +623,7 @@ footer {
     min-height: 420px;
   }
   .project-card img,
-  .project-visual {
+  .evidence-panel {
     height: 220px;
     min-height: 220px;
   }
