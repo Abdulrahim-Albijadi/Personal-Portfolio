@@ -245,8 +245,16 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
   margin-bottom: 24px;
+}
+.card-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: var(--blue-light);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .skills-list {
   display: flex;

@@ -68,6 +68,11 @@ if (projectList) {
 async function loadRepositories() {
   const repoStatus = document.getElementById('repoStatus');
   const repoList = document.getElementById('repoList');
+  const featuredRepoOrder = [
+    'SWE-363-KFUPMEvent-Project',
+    'Personal-Portfolio',
+    'bookstore-management-system',
+  ];
   if (!repoList) return;
   repoStatus.textContent = 'Loading repositories...';
   try {
@@ -78,6 +83,14 @@ async function loadRepositories() {
       '202260760-Abdulrahim-assignment3',
       '202260760-Abdulrahim-assignment4'
     ].includes(repo.name));
+    repos.sort((a, b) => {
+      const aIndex = featuredRepoOrder.indexOf(a.name);
+      const bIndex = featuredRepoOrder.indexOf(b.name);
+      const aPriority = aIndex === -1 ? featuredRepoOrder.length : aIndex;
+      const bPriority = bIndex === -1 ? featuredRepoOrder.length : bIndex;
+
+      return aPriority - bPriority;
+    });
     repoStatus.textContent = '';
     repos.slice(0, 6).forEach((repo) => {
       const repoCard = document.createElement('article');
