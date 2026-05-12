@@ -201,9 +201,17 @@ h1 {
   justify-content: center;
   background: linear-gradient(145deg, rgba(59,130,246,1), rgba(96,165,250,0.3));
   box-shadow: var(--glow);
-  font-size: 72px;
   margin-bottom: 28px;
   z-index: 2;
+}
+.hero-icon svg {
+  width: 76px;
+  height: 76px;
+  fill: none;
+  stroke: white;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .hero-card h3,
 .hero-card p {
@@ -270,20 +278,7 @@ h1 {
   color: var(--secondary);
   font-size: 14px;
 }
-.project-controls {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 18px;
-  padding: 24px;
-  margin-bottom: 28px;
-}
-label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
 input,
-select,
 textarea {
   width: 100%;
   max-width: 100%;
@@ -353,6 +348,51 @@ textarea {
   filter: brightness(1);
   transform: scale(1.02);
 }
+.project-visual {
+  position: relative;
+  z-index: 2;
+  min-height: 260px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.72)),
+    radial-gradient(circle at top right, rgba(96,165,250,0.14), transparent 46%),
+    rgba(15,23,42,0.86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.project-card:hover .project-visual {
+  border-color: rgba(96,165,250,0.45);
+  transform: scale(1.02);
+}
+.unavailable-content {
+  max-width: 420px;
+}
+.unavailable-content span {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.22);
+  color: var(--blue-light);
+  background: rgba(59,130,246,0.1);
+  font-size: 13px;
+  font-weight: 700;
+}
+.unavailable-content h4 {
+  margin-bottom: 10px;
+  color: white;
+  font-size: 22px;
+}
+.unavailable-content p {
+  color: var(--secondary);
+  line-height: 1.7;
+  font-size: 15px;
+}
 .repo-card {
   padding: 28px;
   transition: 0.3s ease;
@@ -365,6 +405,22 @@ textarea {
 .repo-meta {
   margin-top: 16px;
   color: var(--secondary);
+}
+.repo-icon,
+.repo-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.repo-icon svg,
+.repo-stat svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--blue-light);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .repo-card a {
   color: var(--blue-light);
@@ -447,9 +503,6 @@ footer {
   .nav-links {
     display: none;
   }
-  .project-controls {
-    grid-template-columns: 1fr;
-  }
   .project-card {
     grid-template-columns: 1fr;
   }
@@ -464,27 +517,11 @@ footer {
   .hero-card {
     min-height: 420px;
   }
-  .project-card img {
+  .project-card img,
+  .project-visual {
     height: 220px;
+    min-height: 220px;
   }
-}
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  padding-right: 52px;
-
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--secondary) 50%),
-    linear-gradient(135deg, var(--secondary) 50%, transparent 50%);
-
-  background-position:
-    calc(100% - 24px) calc(50% - 3px),
-    calc(100% - 18px) calc(50% - 3px);
-
-  background-size: 6px 6px;
-  background-repeat: no-repeat;
 }
 /* EDUCATION TIMELINE */
 
@@ -557,12 +594,6 @@ select {
   display: flex;
   flex-direction: column;
   gap: 18px;
-}
-
-/* SELECT ARROW SPACING */
-
-select {
-  padding-right: 54px;
 }
 
 /* REVEAL ANIMATION */

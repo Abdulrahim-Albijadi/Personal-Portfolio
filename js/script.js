@@ -29,42 +29,6 @@ toggleBtn.addEventListener('click', () => {
     setTheme('dark');
   }
 });
-const searchInput = document.getElementById('projectSearch');
-const filterProjects = document.getElementById('filterProjects');
-const sortProjects = document.getElementById('sortProjects');
-const projectList = document.getElementById('projectList');
-const emptyMessage = document.getElementById('emptyMessage');
-if (projectList) {
-  const originalProjects = Array.from(projectList.querySelectorAll('.project-card'));
-  function updateProjects() {
-    const searchValue = searchInput.value.toLowerCase().trim();
-    const selectedCategory = filterProjects.value;
-    const sortValue = sortProjects.value;
-    let projects = [...originalProjects];
-    projects = projects.filter((project) => {
-      const title = project.dataset.title.toLowerCase();
-      const text = project.textContent.toLowerCase();
-      const category = project.dataset.category;
-      const matchesSearch = title.includes(searchValue) || text.includes(searchValue);
-      const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
-    if (sortValue === 'az') {
-      projects.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title));
-    } else if (sortValue === 'za') {
-      projects.sort((a, b) => b.dataset.title.localeCompare(a.dataset.title));
-    }
-    projectList.innerHTML = '';
-    projects.forEach((project) => {
-      projectList.appendChild(project);
-    });
-    emptyMessage.style.display = projects.length === 0 ? 'block' : 'none';
-  }
-  searchInput.addEventListener('input', updateProjects);
-  filterProjects.addEventListener('change', updateProjects);
-  sortProjects.addEventListener('change', updateProjects);
-  updateProjects();
-}
 async function loadRepositories() {
   const repoStatus = document.getElementById('repoStatus');
   const repoList = document.getElementById('repoList');
@@ -97,7 +61,11 @@ async function loadRepositories() {
       repoCard.className = 'glass repo-card';
       repoCard.innerHTML = `
         <div class="repo-top">
-          <span>⚡</span>
+          <span class="repo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2 5 13h7l-2 9 9-12h-7l2-8Z"></path>
+            </svg>
+          </span>
           <span>${repo.language || 'Code'}</span>
         </div>
         <h3>
@@ -109,7 +77,12 @@ async function loadRepositories() {
           ${repo.description || 'No description available.'}
         </p>
         <div class="repo-meta">
-          <span>⭐ ${repo.stargazers_count}</span>
+          <span class="repo-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path>
+            </svg>
+            ${repo.stargazers_count}
+          </span>
           <span>${repo.visibility}</span>
         </div>
       `;
