@@ -48,7 +48,7 @@ async function loadRepositories() {
   if (!repoList) return;
   repoStatus.textContent = 'Loading repositories...';
   try {
-    const response = await fetch('https://api.github.com/users/B9-2/repos');
+    const response = await fetch('https://api.github.com/users/Abdulrahim-Albijadi/repos');
     let repos = await response.json();
     repos = repos.filter(repo => ![
       '202260760-Abdulrahim-assignment2',
