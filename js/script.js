@@ -1,34 +1,3 @@
-const sunIcon = `
-<svg viewBox="0 0 24 24" aria-hidden="true">
-  <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
-</svg>
-`;
-const moonIcon = `
-<svg viewBox="0 0 24 24" aria-hidden="true">
-  <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3A8.5 8.5 0 1 0 21 14.5Z" fill="currentColor"></path>
-</svg>
-`;
-const toggleBtn = document.getElementById('themeToggle');
-const savedTheme = localStorage.getItem('theme');
-function setTheme(theme) {
-  if (theme === 'light') {
-    document.body.classList.remove('dark');
-    toggleBtn.innerHTML = moonIcon;
-    localStorage.setItem('theme', 'light');
-  } else {
-    document.body.classList.add('dark');
-    toggleBtn.innerHTML = sunIcon;
-    localStorage.setItem('theme', 'dark');
-  }
-}
-setTheme(savedTheme === 'light' ? 'light' : 'dark');
-toggleBtn.addEventListener('click', () => {
-  if (document.body.classList.contains('dark')) {
-    setTheme('light');
-  } else {
-    setTheme('dark');
-  }
-});
 function getLanguageIcon(language) {
   const normalizedLanguage = (language || '').toLowerCase();
 
